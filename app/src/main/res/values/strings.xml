@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">GameQuest</string>
+    <string name="dungeon_quest">Игра Dungeon quest</string>
+    <string name="wakeup_full_text">Вы просыпаетесь в незнакомой комнате. C похмелья у вас сильно болит голова. Вы хотите осмотреться.</string>
+    <string name="look_around_text">Вы хотите осмотреться.</string>
+</resources>
