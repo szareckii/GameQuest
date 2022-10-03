@@ -18,14 +18,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val wakeupClickable = MyClickableSpan {
-            Toast.makeText(this, "asd", Toast.LENGTH_SHORT).show()
-        }
-
-        val questionTextView = findViewById<TextView>(R.id.questionTextView)
         val wakeupFullText = getString(R.string.wakeup_full_text)
         val lookAround = getString(R.string.look_around_text)
         val spannableString = SpannableString(wakeupFullText)
+        val spannableStringTwo = SpannableString("fsdafsadfasdf")
+
+        val twoClickable = MyClickableSpan {
+            Toast.makeText(this, "twoClickable", Toast.LENGTH_SHORT).show()
+        }
+
+        val wakeupClickable = MyClickableSpan {
+            spannableStringTwo.setSpan(
+                twoClickable,
+                0,
+                1,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            setText(spannableStringTwo)
+        }
 
         spannableString.setSpan(
             wakeupClickable,
@@ -33,7 +43,11 @@ class MainActivity : AppCompatActivity() {
             wakeupFullText.indexOf(lookAround) + lookAround.length,
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
+        setText(spannableString)
+    }
 
+    private fun setText(spannableString: SpannableString) {
+        val questionTextView = findViewById<TextView>(R.id.questionTextView)
         questionTextView.run {
             text = spannableString
             movementMethod = LinkMovementMethod.getInstance()
